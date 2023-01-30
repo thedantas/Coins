@@ -21,6 +21,7 @@ To navigate between controllers using the coordinating layer without having any 
 ![](Assets/retry.png) 
 
 ## Errors Handler
+
 public enum SwiftyRestKitError: Error {
     case parametersNil
     case encodingFailed
