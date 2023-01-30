@@ -34,8 +34,8 @@
 "Not found" = "Not found";
 "The resource you are trying to reach does not exist." = "The resource you are trying to reach does not exist.";
 
-"Unknown error" = "Unknown error";
-"An unknown network error occured, please check your internet connection and try again. If the error persists, please contact support." = "An unknown network error occured, please check your internet connection and try again. If the error persists, please contact support.";
+"Unknown error" = "Token expirado";
+"An unknown network error occured, please check your internet connection and try again. If the error persists, please contact support." = "Token expirado, por favor solicitar um novo token em https://www.coinapi.io/";
 
 "Your request did not return any data." = "Your request did not return any data.";
 

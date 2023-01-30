@@ -8,31 +8,20 @@
 import UIKit
 
 class ListTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var exchangeLabel: UILabel!
     @IBOutlet weak var volumeLabel: UILabel!
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupLayout()
     }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    func setupLayout(){
-       
-    }
-    
     func update(with viewModel: CoinsListTableViewCellViewModel) {
         nameLabel.text = viewModel.coins.name
         exchangeLabel.text = viewModel.coins.exchangeID
         volumeLabel.text = viewModel.coins.volume1DayUsd?.localeCurrency
     }
-    
 }
 
 extension ListTableViewCell: ReusableView, NibLoadableView { }

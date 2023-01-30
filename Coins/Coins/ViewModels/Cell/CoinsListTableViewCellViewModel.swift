@@ -9,14 +9,10 @@ import Foundation
 import UIKit
 
 struct CoinsListTableViewCellViewModel {
-    
     // MARK: - Properties
     var coins: Crypto
-    
     // MARK: - Init
     init(model: Crypto) {
         self.coins = model
-        
     }
 }
-

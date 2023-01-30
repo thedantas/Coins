@@ -22,7 +22,6 @@ extension ListViewModel {
     func numberOfRows(_ section: Int) -> Int {
         return items.count
     }
-    
     func modelAt(_ index: Int) -> Model {
         return items[index]
     }

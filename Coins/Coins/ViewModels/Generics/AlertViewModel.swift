@@ -9,11 +9,9 @@ import Foundation
 import UIKit
 
 struct AlertViewModel {
-    
     // MARK: - Properties
     var title: String
     var message: String
-        
     // MARK: - Init
     init(networkErrorModel: SwiftyRestKitError) {
         switch networkErrorModel {
@@ -40,23 +38,19 @@ struct AlertViewModel {
             message = "An unknown network error occured, please check your internet connection and try again. If the error persists, please contact support.".localized()
         }
     }
-    
     init(internalErrorModel: InternalError) {
         switch internalErrorModel {
         case .noDataError:
             title = "Not found".localized()
             message = "Your request did not return any data.".localized()
-            
         default:
             title = "Unknown error".localized()
             message = "An unknown internal error occured, please check your internet connection and try again. If the error persists, please contact support.".localized()
         }
     }
-    
     init(genericErrorModel: Error) {
         if let error = genericErrorModel as NSError? {
             switch error.code {
-            
             default:
                 title = "Unknown error".localized()
                 message = "An unknown internal error occured, please check your internet connection and try again. If the error persists, please contact support.".localized()
@@ -67,5 +61,3 @@ struct AlertViewModel {
         }
     }
 }
-
-

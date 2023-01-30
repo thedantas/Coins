@@ -8,6 +8,7 @@ opt_in_rules: # some rules are only opt-in
   # swiftlint rules
 included: # paths to include during linting. `--path` is ignored if present.
   - SourceProject
+  - Coins
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
@@ -23,7 +24,7 @@ force_try:
   severity: warning # explicitly
 # rules that have both warning and error levels, can set just the warning level
 # implicitly
-line_length: 110
+line_length: 200
 # they can set both implicitly with an array
 type_body_length:
   - 300 # warning
@@ -35,14 +36,15 @@ file_length:
 # naming rules can set warnings/errors for min_length and max_length
 # additionally they can set excluded names
 type_name:
-  min_length: 4 # only warning
+  min_length: 1 # only warning
   max_length: # warning and error
-    warning: 40
-    error: 50
+    warning: 50
+    error: 60
   excluded: iPhone # excluded via string
 identifier_name:
+  validates_start_with_lowercase: false
   min_length: # only min_length
-    error: 4 # only error
+    error: 1 # only error
   excluded: # excluded via string array
     - id
     - URL

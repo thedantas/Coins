@@ -25,7 +25,6 @@ public enum SwiftyRestKitError: Error {
     case resourceNotFound
     case invalidAPIClientKey
     case serviceError
-    
     func convertNSURLError(_ error: Error) -> SwiftyRestKitError {
         if let error = error as NSError? {
             switch error.code {

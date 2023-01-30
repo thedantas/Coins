@@ -13,11 +13,9 @@ class TableViewDataSource<CellType, ViewModel>: NSObject, UITableViewDataSource 
     CellType: NibLoadableView,
     CellType: ReusableView,
     ViewModel: ListViewModel {
-    
     // MARK: - Properties
     var viewModel: ViewModel
     let configureCell: (CellType, ViewModel.Model) -> Void
-    
     // MARK: - Init
     init(viewModel: ViewModel, tableView: UITableView, configureCell: @escaping (CellType, ViewModel.Model) -> Void) {
         tableView.register(CellType.self)
@@ -25,19 +23,14 @@ class TableViewDataSource<CellType, ViewModel>: NSObject, UITableViewDataSource 
         self.viewModel = viewModel
         self.configureCell = configureCell
     }
-    
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows(section)
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CellType = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        
         let model = viewModel.modelAt(indexPath.row)
         self.configureCell(cell, model)
-        
         return cell
     }
-    
 }

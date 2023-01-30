@@ -9,34 +9,28 @@ import Foundation
 
 class DetailsViewModel: ListViewModel {
     typealias Model = Crypto
-    
     // MARK: - Properties
     private let service: Gettable?
-    
     private(set) var items = [Crypto]()
     private(set) var hasReachedLastPage: Bool = false
-    
     // MARK: - Init
     init<S: Gettable>(service: S) {
         self.service = service
     }
-    
     // MARK: - ListViewModel Conformance
     func addItems(_ items: [Model]) {
         self.items.append(contentsOf: items)
     }
-    
     func removeAllItems() {
         items.removeAll()
     }
-    
     // MARK: - Fetch data
     func fetchTeam(teamID: String, completion: @escaping (Result<Bool>) -> Void) {
         guard let service = service as? Services else {
             completion(.Failure(SwiftyRestKitError.serviceError))
             return
         }
-        service.fetchTeam(teamID: teamID){ [weak self] (result) in
+        service.fetchTeam(teamID: teamID) { [weak self] (result) in
             switch result {
             case .Success(let shows):
                 self?.addItems(shows)
@@ -48,9 +42,5 @@ class DetailsViewModel: ListViewModel {
                 completion(.Failure(error))
             }
         }
-        
-        
     }
 }
-
-

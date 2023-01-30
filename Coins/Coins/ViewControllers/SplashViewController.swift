@@ -8,14 +8,13 @@
 import UIKit
 import Lottie
 
-//MARK: Protocol Splash
+// MARK: - Protocol Splash
 protocol SplashDelegate: AnyObject {
     func navigateToMain()
 }
 
 class SplashViewController: UIViewController {
-    
-    //MARK: Layout
+    //MARK: - Layout
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Roboto", size: 20)
@@ -25,7 +24,6 @@ class SplashViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("Avançar", for: .normal)
@@ -37,7 +35,6 @@ class SplashViewController: UIViewController {
         button.addTarget(self, action: #selector(touchedRegisterButton), for: .touchUpInside)
         return button
     }()
-    
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Roboto", size: 16)
@@ -48,7 +45,6 @@ class SplashViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     lazy var animationView: LottieAnimationView = {
         var view = LottieAnimationView()
         let jsonName = "coin"
@@ -59,17 +55,15 @@ class SplashViewController: UIViewController {
         view.play()
         return view
     }()
-    
-    //MARK: Variables
+    //MARK: - Variables
     weak var delegate: SplashDelegate?
 
-    //MARK: Cycle Life
+    //MARK: - Cycle Life
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutSetup()
         setupContraints()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -80,28 +74,23 @@ class SplashViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
-    func layoutSetup(){
+    func layoutSetup() {
         view.backgroundColor = .lightOrangeColor
         view.addSubview(titleLabel)
         view.addSubview(nextButton)
         view.addSubview(animationView)
         view.addSubview(descriptionLabel)
         view.addSubview(nextButton)
-        
     }
-    
-    func setupContraints(){
+    func setupContraints() {
         let safeG = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: safeG.topAnchor, constant: 32.0),
             titleLabel.leadingAnchor.constraint(equalTo: safeG.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: safeG.trailingAnchor),
-            
             descriptionLabel.topAnchor.constraint(equalTo: safeG.topAnchor, constant: 250.0),
             descriptionLabel.leadingAnchor.constraint(equalTo: safeG.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: safeG.trailingAnchor),
-            
-           
             nextButton.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 32),
             nextButton.trailingAnchor.constraint(equalTo: safeG.trailingAnchor, constant: -32),
             nextButton.bottomAnchor.constraint(equalTo: safeG.bottomAnchor, constant: -32.0),
@@ -109,7 +98,7 @@ class SplashViewController: UIViewController {
         ])
     }
 
-    @objc private func touchedRegisterButton(){
+    @objc private func touchedRegisterButton() {
         self.delegate?.navigateToMain()
     }
 }

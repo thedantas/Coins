@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class DetailViewController: UIViewController {
-    
     let exchangeLabel: UILabel = {
         let label = UILabel()
         label.text = "Exchange:"
@@ -26,7 +25,6 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Nome:"
@@ -43,7 +41,6 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     let volumeHoursLabel: UILabel = {
         let label = UILabel()
         label.text = "Volume por hora:"
@@ -60,7 +57,6 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     let volumeDayLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -77,7 +73,6 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     let volumeMounthLabel: UILabel = {
         let label = UILabel()
         label.text = "Volume por mes:"
@@ -94,7 +89,6 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("Acessar o site", for: .normal)
@@ -107,48 +101,29 @@ class DetailViewController: UIViewController {
         return button
     }()
     let activityIndicator = UIActivityIndicatorView()
-    
     // MARK: - Properties
     var cypto: Crypto!
     var webSite: String?
     private let viewModel = DetailsViewModel(service: Services())
-    
-    
     // MARK: - View controller life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = "Main Title Detail".localized()
         self.setBackButton()
         navigationItem.largeTitleDisplayMode = .never
-        
-      //  viewModel = DetailsViewModel(service: Services())
-   
-
-  
-        
-        displayTVShowDetails()
+        displayCoinsDetails()
         buildUI()
     }
-    
-    @objc private func touchedWebsiteButton(){
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    @objc private func touchedWebsiteButton() {
         if let url = URL(string: webSite ?? "") {
             UIApplication.shared.open(url)
         }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // TODO: Set the correct content size for the scrollview here so it scolls vertically if the content is bigger than the screen's height
-        
-        
-    }
-    
     func buildUI() {
         self.view.backgroundColor = .lightOrangeColor
-        
-        // initial information
         self.view.addSubview(exchangeLabel)
         self.view.addSubview(exchangeValue)
         self.view.addSubview(nameLabel)
@@ -162,38 +137,25 @@ class DetailViewController: UIViewController {
         self.view.addSubview(nextButton)
         // always a good idea to respect safe area
         let safeG = view.safeAreaLayoutGuide
-        
-        
         NSLayoutConstraint.activate([
-   
-            
             exchangeLabel.topAnchor.constraint(equalTo: safeG.topAnchor, constant: 32.0),
             exchangeLabel.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 16.0),
-            
             exchangeValue.topAnchor.constraint(equalTo: exchangeLabel.bottomAnchor, constant: 8.0),
             exchangeValue.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 16.0),
-            
             nameLabel.topAnchor.constraint(equalTo: exchangeValue.bottomAnchor, constant: 32.0),
             nameLabel.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 16.0),
-            
             nameValue.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8.0),
             nameValue.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 16.0),
-            
             volumeHoursLabel.topAnchor.constraint(equalTo: nameValue.bottomAnchor, constant: 32.0),
             volumeHoursLabel.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 16.0),
-            
             volumeHoursValue.topAnchor.constraint(equalTo: volumeHoursLabel.bottomAnchor, constant: 8.0),
             volumeHoursValue.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 16.0),
-            
             volumeDayLabel.topAnchor.constraint(equalTo: volumeHoursValue.bottomAnchor, constant: 32.0),
             volumeDayLabel.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 16.0),
-            
             volumeDayValue.topAnchor.constraint(equalTo: volumeDayLabel.bottomAnchor, constant: 8.0),
             volumeDayValue.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 16.0),
-            
             volumeMounthLabel.topAnchor.constraint(equalTo: volumeDayValue.bottomAnchor, constant: 32.0),
             volumeMounthLabel.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 16.0),
-            
             volumeMounthValue.topAnchor.constraint(equalTo: volumeMounthLabel.bottomAnchor, constant: 8.0),
             volumeMounthValue.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 16.0),
 
@@ -201,39 +163,34 @@ class DetailViewController: UIViewController {
             nextButton.trailingAnchor.constraint(equalTo: safeG.trailingAnchor, constant: -32),
             nextButton.bottomAnchor.constraint(equalTo: safeG.bottomAnchor, constant: -32.0),
             nextButton.heightAnchor.constraint(equalToConstant: 55)
-            
         ])
     }
-    
-    fileprivate func displayTVShowDetails() {
+    fileprivate func displayCoinsDetails() {
         activityIndicator.startAnimating()
 
-        viewModel.fetchTeam(teamID: cypto.exchangeID ?? ""){ [weak self] (result) in
+        viewModel.fetchTeam(teamID: cypto.exchangeID ?? "") { [weak self] (result) in
             DispatchQueue.main.async {
                 self?.activityIndicator.stopAnimating()
                 switch result {
                 case .Success:
-                    self?.viewModel.items.forEach{ item in
-                        print(item)
-                        self!.exchangeValue.text = item.exchangeID
-                        self!.nameValue.text = item.name
-                        self!.volumeDayValue.text = item.volume1DayUsd!.localeCurrency
-                        self!.volumeHoursValue.text = item.volume1HrsUsd?.localeCurrency
-                        self!.volumeMounthValue.text = item.volume1MthUsd?.localeCurrency
-                        self!.webSite = item.website
+                    self?.viewModel.items.forEach { item in
+                        self?.exchangeValue.text = item.exchangeID
+                        self?.nameValue.text = item.name
+                        self?.volumeDayValue.text = item.volume1DayUsd?.localeCurrency
+                        self?.volumeHoursValue.text = item.volume1HrsUsd?.localeCurrency
+                        self?.volumeMounthValue.text = item.volume1MthUsd?.localeCurrency
+                        self?.webSite = item.website
                     }
                     self?.viewModel.removeAllItems()
-              
-                
                 case.Failure(let error):
                     if let strongSelf = self {
-                        if self?.viewModel.items.count == 0 {
+                        if ((self?.viewModel.items.isEmpty) != nil) {
                          //   self?.showFailedFetchView()
                         }
-                        guard let restError = error as? SwiftyRestKitError, !(restError == .resourceNotFound && strongSelf.viewModel.hasReachedLastPage) else {
+                        guard let restError = error as? SwiftyRestKitError,
+                              !(restError == .resourceNotFound && strongSelf.viewModel.hasReachedLastPage) else {
                             return
                         }
-                        
                         ErrorHandler.sharedInstance.handleError(error, from: strongSelf)
                     }
                 }
@@ -241,7 +198,6 @@ class DetailViewController: UIViewController {
         }
     }
 }
-
 
 extension UIStackView {
     func addArrangedSubViews(_ views: [UIView]) {

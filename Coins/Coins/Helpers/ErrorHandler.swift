@@ -9,13 +9,10 @@ import Foundation
 import UIKit
 
 class ErrorHandler: NSObject {
-    
     static var sharedInstance = ErrorHandler()
-    
     private override init() {
         super.init()
     }
-    
     func handleError(_ error: Error?, from controller: UIViewController) {
         if let error = error as? InternalError {
             if error == InternalError.decodingError {
@@ -28,6 +25,7 @@ class ErrorHandler: NSObject {
         } else if let error = error as? SwiftyRestKitError {
             if error == SwiftyRestKitError.invalidAPIClientKey {
                 print("Invalid API Key error")
+                self.showAlertFor(error: error, from: controller)
             } else {
                 self.showAlertFor(error: error, from: controller)
             }
@@ -35,13 +33,10 @@ class ErrorHandler: NSObject {
             self.showAlertFor(error: error, from: controller)
         }
     }
-    
     fileprivate func showAlertFor(error: Error?, from controller: UIViewController) {
         var viewModel: AlertViewModel!
-        
         if let error = error as? SwiftyRestKitError {
             viewModel = AlertViewModel.init(networkErrorModel: error)
-            
         } else if let error = error as? InternalError {
             viewModel = AlertViewModel.init(internalErrorModel: error)
         } else {
@@ -53,7 +48,6 @@ class ErrorHandler: NSObject {
         alert.addAction(UIAlertAction.init(title: NSLocalizedString("ok", comment: "Ok"), style: .default, handler: nil))
         controller.present(alert, animated: true, completion: nil)
     }
-    
     func convertNSURLError(_ error: Error) -> SwiftyRestKitError {
         if let error = error as NSError? {
             switch error.code {

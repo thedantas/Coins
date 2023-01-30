@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Result<T: Decodable>  {
+public enum Result<T: Decodable> {
     case Success(T)
     case Failure(Error)
 }

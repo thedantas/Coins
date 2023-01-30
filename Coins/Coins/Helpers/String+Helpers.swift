@@ -11,7 +11,6 @@ extension String {
     func localized(bundle: Bundle = .main, tableName: String = "Localizable") -> String {
         return NSLocalizedString(self, tableName: tableName, value: "**\(self)**", comment: "")
     }
-    
     public var withoutHtml: String {
         guard let data = self.data(using: .utf8) else {
             return self
@@ -28,7 +27,6 @@ extension String {
 
         return attributedString.string
     }
-    
     func fromHTMLToAttributedString() -> NSAttributedString {
             guard let data = data(using: .utf8) else { return NSAttributedString() }
             do {

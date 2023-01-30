@@ -10,11 +10,9 @@ import UIKit
 import Swinject
 
 class AppCoordinator: Coordinator {
-    
-    //MARK: Variables
+    // MARK: - Variables
     let window: UIWindow
     let container: Container
-
     var currentView: UIViewController? {
         get {
             return window.rootViewController
@@ -26,35 +24,30 @@ class AppCoordinator: Coordinator {
             }, completion: nil)
         }
     }
-    
-    //MARK: Init
+    // MARK: - Init
     init(window: UIWindow, container: Container) {
         self.window = window
         self.container = container
     }
-    
-    //MARK: Functions
+    // MARK: - Functions
     func start() {
-            showSplashScreen()
+        showSplashScreen()
     }
-    
     fileprivate func showSplashScreen() {
         let view = container.resolve(SplashViewController.self)!
         view.delegate = self
         self.currentView = view
     }
-    
     fileprivate func showMainView() {
         let view = container.resolve(ListViewController.self)!
         self.currentView = view
     }
-
 }
 
-//MARK: Extentions
+// MARK: - Extentions
 extension AppCoordinator: SplashDelegate {
     func navigateToMain() {
         self.showMainView()
-    }
 
+    }
 }

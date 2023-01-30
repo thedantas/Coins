@@ -5,14 +5,11 @@
 //  Created by André  Costa Dantas on 01/11/22.
 //
 
-
 import Foundation
 
 public class NetworkManager<EndPoint: EndPointType> {
-    public init(){ }
-    
+    public init() {}
     public let dispatcher = Dispatcher<EndPoint>()
-    
     public enum NetworkResponse: Error, Decodable {
         case success
         case forbidden
@@ -22,7 +19,6 @@ public class NetworkManager<EndPoint: EndPointType> {
         case notFound
         case unableToDecode
     }
-    
     public func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<NetworkResponse> {
         switch response.statusCode {
             case 200...299: return .Success(NetworkResponse.success)

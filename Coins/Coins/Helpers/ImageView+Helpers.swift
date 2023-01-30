@@ -9,10 +9,8 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    
     func setImage(withURL urlString: String, placeholderImage: UIImage) {
         image = placeholderImage
-        
         let url = URL.init(string: urlString)
         let request = URLRequest.init(url: url!)
         let session = URLSession.shared
@@ -23,7 +21,6 @@ extension UIImageView {
                     self?.image = UIImage.init(data: imgData)
                 }
             }
-            
         }
         datatask.resume()
     }

@@ -21,7 +21,7 @@ extension UINavigationBar {
 }
 extension UIViewController {
 
-    func setBackButton(){
+    func setBackButton() {
         let yourBackImage = UIImage(named: "backImage")
         navigationController?.navigationBar.backIndicatorImage = yourBackImage
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = yourBackImage
