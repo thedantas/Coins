@@ -30,7 +30,7 @@ class CryptoListViewModel: ListViewModel {
             completion(.Failure(SwiftyRestKitError.serviceError))
             return
         }
-        service.fetchAllMatchs { [weak self] (result) in
+        service.fetchAllCryptos { [weak self] (result) in
             switch result {
             case .Success(let shows):
                 self?.addItems(shows)

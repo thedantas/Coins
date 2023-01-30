@@ -2,8 +2,8 @@
 //  Result.swift
 //  SwiftyRestKit
 //
-//  Created by Rodolfo Roca on 12/11/18.
-//  Copyright © 2018 Rodolfo Roca. All rights reserved.
+//
+//  Created by André  Costa Dantas on 25/01/23.
 //
 
 import Foundation

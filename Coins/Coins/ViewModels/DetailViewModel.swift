@@ -30,7 +30,7 @@ class DetailsViewModel: ListViewModel {
             completion(.Failure(SwiftyRestKitError.serviceError))
             return
         }
-        service.fetchTeam(teamID: teamID) { [weak self] (result) in
+        service.fetchCrypto(exchangeID: teamID) { [weak self] (result) in
             switch result {
             case .Success(let shows):
                 self?.addItems(shows)

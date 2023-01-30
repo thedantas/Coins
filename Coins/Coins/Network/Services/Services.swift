@@ -8,7 +8,7 @@
 import Foundation
 
 struct Services {
-    func fetchAllMatchs(completion: @escaping (Result<[Crypto]>) -> Void) {
+    func fetchAllCryptos(completion: @escaping (Result<[Crypto]>) -> Void) {
         manager.dispatcher.request(.allMatchs) { (data, response, error) in
             if let error = error {
                 let networkError = ErrorHandler.sharedInstance.convertNSURLError(error)
@@ -40,8 +40,8 @@ struct Services {
             }
         }
     }
-    func fetchTeam(teamID: String, completion: @escaping (Result<DetailCrypto>) -> Void) {
-        manager.dispatcher.request(.showDetails(exchangeID: teamID)) { (data, response, error) in
+    func fetchCrypto(exchangeID: String, completion: @escaping (Result<DetailCrypto>) -> Void) {
+        manager.dispatcher.request(.showDetails(exchangeID: exchangeID)) { (data, response, error) in
             if let error = error {
                 let networkError = ErrorHandler.sharedInstance.convertNSURLError(error)
                 completion(Result.Failure(networkError))

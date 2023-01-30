@@ -75,6 +75,7 @@
 		50715FE9297F140400736C46 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50715FE7297F140400736C46 /* ListTableViewCell.xib */; };
 		50715FEC297F149100736C46 /* CoinsListTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50715FEB297F149100736C46 /* CoinsListTableViewCellViewModel.swift */; };
 		50715FEE297F14EC00736C46 /* CryptoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50715FED297F14EC00736C46 /* CryptoListViewModel.swift */; };
+		508D72EB29882060008816CE /* CoinServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508D72EA29882060008816CE /* CoinServiceTests.swift */; };
 		50E3EA66298054B40072D122 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50E3EA65298054B40072D122 /* Colors.xcassets */; };
 		8D21347128DD8BAE90EEE354 /* Pods_CoinsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD30C716B2A8ED0618DE3074 /* Pods_CoinsTests.framework */; };
 		D126D72C05CE764171976BE1 /* Pods_Coins.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9049AF96F9350DB5C3645609 /* Pods_Coins.framework */; };
@@ -171,6 +172,7 @@
 		50715FE7297F140400736C46 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		50715FEB297F149100736C46 /* CoinsListTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		50715FED297F14EC00736C46 /* CryptoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListViewModel.swift; sourceTree = "<group>"; };
+		508D72EA29882060008816CE /* CoinServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinServiceTests.swift; sourceTree = "<group>"; };
 		50E3EA65298054B40072D122 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		67DF7F5D77A46E6182CCE82B /* Pods-Coins.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Coins.release.xcconfig"; path = "Target Support Files/Pods-Coins/Pods-Coins.release.xcconfig"; sourceTree = "<group>"; };
 		9049AF96F9350DB5C3645609 /* Pods_Coins.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Coins.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				50715F4E297F07C000736C46 /* CoinsTests.swift */,
+				508D72EA29882060008816CE /* CoinServiceTests.swift */,
 			);
 			path = CoinsTests;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508D72EB29882060008816CE /* CoinServiceTests.swift in Sources */,
 				50715F4F297F07C000736C46 /* CoinsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
