@@ -25,12 +25,12 @@ class DetailsViewModel: ListViewModel {
         items.removeAll()
     }
     // MARK: - Fetch data
-    func fetchTeam(teamID: String, completion: @escaping (Result<Bool>) -> Void) {
+    func fetchCryptoDetail(exchangeID: String, completion: @escaping (Result<Bool>) -> Void) {
         guard let service = service as? Services else {
             completion(.Failure(SwiftyRestKitError.serviceError))
             return
         }
-        service.fetchCrypto(exchangeID: teamID) { [weak self] (result) in
+        service.fetchCrypto(exchangeID: exchangeID) { [weak self] (result) in
             switch result {
             case .Success(let shows):
                 self?.addItems(shows)

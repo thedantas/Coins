@@ -50,6 +50,17 @@
                ReferencedContainer = "container:Coins.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "508D72EF299132AE008816CE"
+               BuildableName = "snapshotTests.xctest"
+               BlueprintName = "snapshotTests"
+               ReferencedContainer = "container:Coins.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

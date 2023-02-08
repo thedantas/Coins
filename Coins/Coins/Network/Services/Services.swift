@@ -22,6 +22,7 @@ struct Services {
             switch result {
             case .Success:
                 guard let data = data else { return }
+                print(String(data: data, encoding: .utf8))
                 let decoder = JSONDecoder()
                 if let showsData = try? decoder.decode([Crypto].self, from: data) {
                     completion(Result.Success(showsData))
@@ -54,6 +55,7 @@ struct Services {
             switch result {
             case .Success:
                 guard let data = data else { return }
+                print(String(data: data, encoding: .utf8))
                 let decoder = JSONDecoder()
                 if let showsData = try? decoder.decode(DetailCrypto.self, from: data) {
                     completion(Result.Success(showsData))

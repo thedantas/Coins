@@ -167,8 +167,7 @@ class DetailViewController: UIViewController {
     }
     fileprivate func displayCoinsDetails() {
         activityIndicator.startAnimating()
-
-        viewModel.fetchTeam(teamID: cypto.exchangeID ?? "") { [weak self] (result) in
+        viewModel.fetchCryptoDetail(exchangeID: cypto.exchangeID ?? "") { [weak self] (result) in
             DispatchQueue.main.async {
                 self?.activityIndicator.stopAnimating()
                 switch result {
